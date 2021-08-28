@@ -19,32 +19,29 @@ public class UserControl : MonoBehaviour
     {
         Marker.SetActive(false);
     }
-    // we want other factors to be able to control these selections and actions?
-    // Let’s abstract that functionality out into two new methods to make that possible.
+
     public void HandleSelection()
     {
-        // start of code cut from GetMouseButtonDown(0) check
         var ray = GameCamera.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit))
         {
-            // the collider could be children of the unit, so we make sure to check in the parent
+            //the collider could be children of the unit, so we make sure to check in the parent
             var unit = hit.collider.GetComponentInParent<Unit>();
             m_Selected = unit;
 
 
-            // check if the hit object have a IUIInfoContent to display in the UI
-            // if there is none, this will be null, so this will hid the panel if it was displayed
+            //check if the hit object have a IUIInfoContent to display in the UI
+            //if there is none, this will be null, so this will hid the panel if it was displayed
             var uiInfo = hit.collider.GetComponentInParent<UIMainScene.IUIInfoContent>();
             UIMainScene.Instance.SetNewInfoContent(uiInfo);
         }
-        // end of code cut from GetMouseButtonDown(0) check
     }
 
     public void HandleAction()
     {
-        // start of code cut from GetMouseButtonDown(1) check
-    var ray = GameCamera.ScreenPointToRay(Input.mousePosition);
+        //right click give order to the unit
+        var ray = GameCamera.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit))
         {
@@ -59,7 +56,6 @@ public class UserControl : MonoBehaviour
                 m_Selected.GoTo(hit.point);
             }
         }
-        // end of code cut from GetMouseButtonDown(1) check
     }
 
     private void Update()
@@ -69,7 +65,7 @@ public class UserControl : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            HandleSelection(); // method now called from here 
+            HandleSelection(); // method now called from here  
         }
         else if (m_Selected != null && Input.GetMouseButtonDown(1))
         {

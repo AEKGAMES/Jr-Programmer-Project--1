@@ -26,7 +26,6 @@ public abstract class Unit : MonoBehaviour,
 
     private void Start()
     {
-        // SetColor is a method to set a color to the unit (the forklift).
         if (MainManager.Instance != null)
         {
             SetColor(MainManager.Instance.TeamColor);

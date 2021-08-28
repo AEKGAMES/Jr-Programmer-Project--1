@@ -5,11 +5,11 @@ using System.IO;
 
 public class MainManager : MonoBehaviour
 {
-    // Start() and Update() methods deleted - we don't need them right now
-
     public static MainManager Instance;
 
     public Color TeamColor; // new variable declared
+
+   
 
     private void Awake()
     {
@@ -23,19 +23,14 @@ public class MainManager : MonoBehaviour
 
         Instance = this;
         DontDestroyOnLoad(gameObject);
-
-        // load the color the player have chose
         LoadColor();
     }
 
-    // SaveData class
     [System.Serializable]
     class SaveData
     {
         public Color TeamColor;
     }
-
-    // SaveColor method
     public void SaveColor()
     {
         SaveData data = new SaveData();
@@ -45,8 +40,6 @@ public class MainManager : MonoBehaviour
 
         File.WriteAllText(Application.persistentDataPath + "/savefile.json", json);
     }
-
-    // LoadColor method
     public void LoadColor()
     {
         string path = Application.persistentDataPath + "/savefile.json";
