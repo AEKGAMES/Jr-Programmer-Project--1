@@ -24,6 +24,8 @@ public class ProductivityUnit : Unit // replace MonoBehaviour with Unit
         // end of new code
     }
 
+    // POLYMORPHISM
+
     void ResetProductivity()
     {
         if (m_CurrentPile != null)

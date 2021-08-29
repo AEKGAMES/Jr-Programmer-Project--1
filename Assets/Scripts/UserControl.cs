@@ -10,7 +10,8 @@ using UnityEngine;
 public class UserControl : MonoBehaviour
 {
     public Camera GameCamera;
-    public float PanSpeed = 10.0f;
+    // ENCAPSULATION
+    [SerializeField] public float PanSpeed = 10.0f;
     public GameObject Marker;
     
     private Unit m_Selected = null;
@@ -26,6 +27,9 @@ public class UserControl : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit))
         {
+
+            // INHERITANCE
+
             //the collider could be children of the unit, so we make sure to check in the parent
             var unit = hit.collider.GetComponentInParent<Unit>();
             m_Selected = unit;
@@ -62,6 +66,8 @@ public class UserControl : MonoBehaviour
     {
         Vector2 move = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         GameCamera.transform.position = GameCamera.transform.position + new Vector3(move.y, 0, -move.x) * PanSpeed * Time.deltaTime;
+
+        // ABSTRACTION
 
         if (Input.GetMouseButtonDown(0))
         {
