@@ -5,11 +5,10 @@ using System.IO;
 
 public class MainManager : MonoBehaviour
 {
-    public static MainManager Instance;
+    // MainManager Instance;
 
     public Color TeamColor; // new variable declared
-
-   
+                          
 
     private void Awake()
     {
@@ -51,4 +50,6 @@ public class MainManager : MonoBehaviour
             TeamColor = data.TeamColor;
         }
     }
+
+    public static MainManager Instance { get; private set; } // add getter to the end of the line
 }
